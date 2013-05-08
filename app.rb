@@ -5,6 +5,7 @@ require 'slim'
 require 'coffee_script'
 require 'rack-flash'
 require 'json'
+require_relative 'lib/input-rymer'
 
 configure do
   enable :logging
@@ -25,9 +26,14 @@ end
 
 get '/*' do
   @word = params[:splat].first
+  @homophones = homophones(@word)
   slim :homophones
 end
 
 post '/' do
   redirect to('/' + params[:word])
+end
+
+def homophones(word)
+  Input::Rymer::lookup(word)
 end

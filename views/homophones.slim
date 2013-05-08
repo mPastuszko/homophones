@@ -4,4 +4,24 @@
     form.navbar-form.text-center method='post' action='/'
       .input-append
         input.input-xlarge type='text' name='word' placeholder='Wpisz słowo bazowe...' value=@word
-        button.btn.btn-primary type='submit' Znajdź homofony
+        button.btn.btn-primary type='submit'
+          i.icon-search.icon-white
+          '  Znajdź homofony
+h1 Homofony dla słowa "#{@word}"
+table.table.table-striped
+  thead
+    tr
+      th #
+      th Słowo
+      th Dopasowanie
+      th Styl podobieństwa
+      th Częstość językowa
+  tbody
+    - @homophones.each_index do |hi|
+      - h = @homophones[hi]
+      tr
+        td= hi + 1
+        td= h[:word]
+        td= h[:power]
+        td= h[:style]
+        td= 0
