@@ -15,6 +15,7 @@ table.table.table-striped
       th Słowo
       th Dopasowanie
       th Styl podobieństwa
+      th Ilość sylab
       th Częstość językowa
   tbody
     - @homophones.each_index do |hi|
@@ -24,4 +25,5 @@ table.table.table-striped
         td= h[:word]
         td= h[:power]
         td= h[:style]
+        td= h[:syllables]
         td= h[:frequency]

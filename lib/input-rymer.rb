@@ -26,17 +26,20 @@ module Input
     def self.extract_homophones(html)
       doc = Nokogiri::HTML(html)
       homophones = []
-      doc.css('.tball').each do |group|
-        style = group.css('.tbgorarym').text.scan(/w stylu '(.+)'/).flatten.first
-        power = group.css('.tbgoramoc span b').text.scan(/\d+%/).first
-        words = group.css('.tbdol div') \
-          .xpath('child::text()') \
-          .map(&:text) \
-          .reject { |word_set| word_set =~ /^\s*:\s*$/ }
-          .map { |word_set| word_set.split(/\s*,\s*/) } \
-          .flatten \
-          .sort
-        words.each { |word| homophones << {style: style, power: power, word: word} }
+      doc.css('.tball').each do |style_group|
+        style = style_group.css('.tbgorarym').text.scan(/w stylu '(.+)'/).flatten.first
+        power = style_group.css('.tbgoramoc span b').text.scan(/\d+%/).first
+        style_group.css('.tbdol div>div').each do |syllable_group|
+          syllables = syllable_group[:class][3..-1].to_i
+          words = syllable_group \
+            .xpath('child::text()') \
+            .map(&:text) \
+            .reject { |word_set| word_set =~ /^\s*:\s*$/ }
+            .map { |word_set| word_set.split(/\s*,\s*/) } \
+            .flatten \
+            .sort
+          words.each { |word| homophones << {style: style, power: power, syllables: syllables, word: word } }
+        end
       end
       homophones
     end
