@@ -7,21 +7,18 @@
         button.btn.btn-primary type='submit'
           i.icon-search.icon-white
           '  Znajdź homofony
-h1 Homofony dla słowa "#{@word}"
-table.table.table-striped
+h3 Znaleziono #{@homophones.size} homofonów dla słowa "#{@word}"
+table.table.table-striped.sortable
   thead
     tr
-      th #
       th Słowo
       th Dopasowanie
       th Styl podobieństwa
       th Ilość sylab
       th Częstość językowa
   tbody
-    - @homophones.each_index do |hi|
-      - h = @homophones[hi]
+    - @homophones.each do |h|
       tr
-        td= hi + 1
         td= h[:word]
         td= h[:power]
         td= h[:style]
