@@ -22,3 +22,12 @@ end
 get '/' do
   slim :home
 end
+
+get '/*' do
+  @word = params[:splat].first
+  slim :homophones
+end
+
+post '/' do
+  redirect to('/' + params[:word])
+end

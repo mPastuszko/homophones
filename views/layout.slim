@@ -1,4 +1,4 @@
-doctype
+doctype html
 /![if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
 /![if IE 7] <html class="no-js lt-ie9 lt-ie8">
 /![if IE 8] <html class="no-js lt-ie9">
@@ -11,42 +11,30 @@ html.no-js
     title Homofony
     meta content="" name="description"
     meta content="width=device-width" name="viewport"
-    link href="css/bootstrap.min.css" rel="stylesheet"
-    link href="css/bootstrap-responsive.min.css" rel="stylesheet"
-    link href="css/main.css" rel="stylesheet"
+    link rel="stylesheet" href="css/bootstrap.min.css"
+    link rel="stylesheet" href="css/bootstrap-responsive.min.css"
+    link rel="stylesheet" href="css/main.css"
     script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"
   body
     /![if lt IE 7]
       | <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    /! This code is taken from http://twitter.github.com/bootstrap/examples/hero.html
     .container
-      /! Main hero unit for a primary marketing message or call to action
-      .hero-unit
-        h1 Hello, world!
-        p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-        p
-          a.btn.btn-primary.btn-large Learn more »
-      /! Example row of columns
-      .row
-        .span4
-          h2 Heading
-          p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          p
-            a.btn href="#"
-        .span4
-          h2 Heading
-          p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          p
-            a.btn href="#"
-        .span4
-          h2 Heading
-          p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          p
-            a.btn href="#"
-      hr
-        footer
-          p © Company 2012
+      == yield
+    footer.navbar-fixed-bottom
+      span
+        | Homofony © #{Time.now.year} 
+        a href='mailto:mikolaj.pastuszko@gmail.com' Mikołaj Pastuszko
+      span
+        | Code licensed under 
+        a href='http://www.apache.org/licenses/LICENSE-2.0' Apache License v2.0
+      span
+        a href='#' data-toggle='collapse' data-target='#credits' Credits
+      #credits.collapse
+        ' Powered by:
+        span: a href='http://twitter.github.com/bootstrap/index.html' Twitter Bootstrap
+        span: a href='http://www.sinatrarb.com/' Sinatra
     /! /container
     script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
     javascript:
       window.jQuery || document.write('<\/script>')
+    script src="js/vendor/bootstrap.min.js"
