@@ -2,7 +2,7 @@
 
 require 'sinatra'
 require 'slim'
-require 'coffee_script'
+# require 'coffee_script'
 require 'rack-flash'
 require 'json'
 require_relative 'lib/input-rymer'
