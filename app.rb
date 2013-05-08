@@ -6,6 +6,7 @@ require 'coffee_script'
 require 'rack-flash'
 require 'json'
 require_relative 'lib/input-rymer'
+require_relative 'lib/addition-freq_dict'
 
 configure do
   enable :logging
@@ -14,6 +15,7 @@ configure do
   use Rack::Flash
   mime_type :ttf, 'font/ttf'
   mime_type :otf, 'font/otf'
+  set :dict, Addition::FreqDict.new('data/freq-dict.pl.bin')
 end
 
 configure :test do
@@ -35,5 +37,6 @@ post '/' do
 end
 
 def homophones(word)
-  Input::Rymer::lookup(word)
+  homophones = Input::Rymer::lookup(word)
+  settings.dict.enrich!(homophones)
 end
