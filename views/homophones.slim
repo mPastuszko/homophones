@@ -7,20 +7,30 @@
         button.btn.btn-primary type='submit'
           i.icon-search.icon-white
           '  Znajdź homofony
-h3 Znaleziono #{@homophones.size} homofonów dla słowa "#{@word}"
-table.table.table-striped.sortable
-  thead
-    tr
-      th Słowo
-      th Dopasowanie
-      th Styl podobieństwa
-      th Ilość sylab
-      th Częstość językowa
-  tbody
-    - @homophones.each do |h|
+#results-loader.loader
+  img src='img/ajax_loader_gray_256.gif'
+  h3= [ \
+    'Przeglądam świat w poszukiwaniu homofonów...', \
+    'Wykrywacz homofonów pracuje pełną parą...', \
+    'Wyłapuję homofony...', \
+    'Tropię homofony...', \
+    'Wykrywacz homofonów pracuje z mozołem...', \
+    'Setki homofonów już tu biegną...'].sample
+#results.hidden
+  h3 Znaleziono #{@homophones.size} homofonów dla słowa "#{@word}"
+  table.table.table-striped.sortable.hidden
+    thead
       tr
-        td= h[:word]
-        td= h[:power]
-        td= h[:style]
-        td= h[:syllables]
-        td= h[:frequency]
+        th Słowo
+        th Dopasowanie
+        th Styl podobieństwa
+        th Ilość sylab
+        th Częstość językowa
+    tbody
+      - @homophones.each do |h|
+        tr
+          td= h[:word]
+          td= h[:power]
+          td= h[:style]
+          td= h[:syllables]
+          td= h[:frequency]

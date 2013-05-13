@@ -24,3 +24,12 @@ footer {
 footer span {
   margin: 0 1em;
 }
+
+.loader {
+  text-align: center;
+  padding: 3em;
+}
+
+.loader img {
+  margin: 3em;
+}

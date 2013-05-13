@@ -26,6 +26,11 @@ get '/' do
   slim :home
 end
 
+get '/results.json' do
+  content_type :json
+  homophones(params[:word]).to_json
+end
+
 get '/*' do
   @word = params[:splat].first
   @homophones = homophones(@word)
