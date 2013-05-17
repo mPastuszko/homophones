@@ -16,7 +16,10 @@
     'Tropię homofony...', \
     'Wykrywacz homofonów pracuje z mozołem...', \
     'Setki homofonów już tu biegną...'].sample
-#results.hidden
+.row
+  #results.span9.hidden
+  #filter.filter.span3
+
 script#results-template type='text/jade-template'
   erb:
     h3 Wyświetlanie #{homophones.length} homofonów dla słowa "#{word}"
@@ -36,6 +39,27 @@ script#results-template type='text/jade-template'
             td= h['style']
             td= h['syllables']
             td= h['frequency']
+script#filter-template type='text/jade-template'
+  erb:
+    h3 Filtr
+    form#filter-form
+      h4 Częstość językowa
+      label.checkbox
+        input(type='checkbox', name='frequency', checked=)
+        | Pokaż tylko elementy, gdzie znana
+      h4 Ilość sylab
+      each option in syllables
+        label.checkbox
+          input(type='checkbox', name='syllables', checked=, value=option)
+          = option
+      h4 Styl podobieństwa:
+      each option in styles
+        label.checkbox
+          input(type='checkbox', name='style', checked=, value=option)
+          = option
+      
+
+
 javascript:
   Data = {
     word: "#{@word}"
