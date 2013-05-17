@@ -33,7 +33,6 @@ end
 
 get '/*' do
   @word = params[:splat].first
-  @homophones = homophones(@word)
   slim :homophones
 end
 

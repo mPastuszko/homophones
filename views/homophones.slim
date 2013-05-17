@@ -17,20 +17,26 @@
     'Wykrywacz homofonów pracuje z mozołem...', \
     'Setki homofonów już tu biegną...'].sample
 #results.hidden
-  h3 Znaleziono #{@homophones.size} homofonów dla słowa "#{@word}"
-  table.table.table-striped.sortable.hidden
-    thead
-      tr
-        th Słowo
-        th Dopasowanie
-        th Styl podobieństwa
-        th Ilość sylab
-        th Częstość językowa
-    tbody
-      - @homophones.each do |h|
+script#results-template type='text/jade-template'
+  erb:
+    h3 Wyświetlanie #{homophones.length} homofonów dla słowa "#{word}"
+    table.table.table-striped.sortable
+      thead
         tr
-          td= h[:word]
-          td= h[:power]
-          td= h[:style]
-          td= h[:syllables]
-          td= h[:frequency]
+          th Słowo
+          th Dopasowanie
+          th Styl podobieństwa
+          th Ilość sylab
+          th Częstość językowa
+      tbody
+        each h in homophones
+          tr
+            td= h['word']
+            td= h['power']
+            td= h['style']
+            td= h['syllables']
+            td= h['frequency']
+javascript:
+  Data = {
+    word: "#{@word}"
+  }
