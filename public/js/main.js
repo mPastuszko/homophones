@@ -25,6 +25,7 @@ function resultsLoaded(data) {
   $('#results').html(renderedResults);
   $('#filter').html(renderedFilter);
   setupFilterHandlers();
+  $.bootstrapSortable();
 
   $('#results-loader').addClass('hidden');
   $('#results, #filter').removeClass('hidden');
@@ -35,6 +36,7 @@ function updateResults() {
   var results = filterResults(Data.results, filterSettings);
   var renderedResults = renderResults(results);
   $('#results').html(renderedResults);
+  $.bootstrapSortable();
 }
 
 function filterResults(results, filterSettings) {
