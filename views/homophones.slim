@@ -22,7 +22,7 @@
 
 script#results-template type='text/jade-template'
   erb:
-    h3 Wyświetlanie #{homophones.length} homofonów dla słowa "#{word}"
+    h3 #{homophones.length} homofonów dla słowa "#{word}"
     table.table.table-striped.sortable
       thead
         tr
@@ -45,14 +45,14 @@ script#filter-template type='text/jade-template'
     form#filter-form
       h4 Częstość językowa
       label.checkbox
-        input(type='checkbox', name='frequency', checked=)
+        input(type='checkbox', name='frequency')
         | Pokaż tylko elementy, gdzie znana
       h4 Ilość sylab
       each option in syllables
         label.checkbox
           input(type='checkbox', name='syllables', checked=, value=option)
           = option
-      h4 Styl podobieństwa:
+      h4 Styl podobieństwa
       each option in styles
         label.checkbox
           input(type='checkbox', name='style', checked=, value=option)
