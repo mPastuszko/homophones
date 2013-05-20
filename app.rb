@@ -2,19 +2,11 @@
 
 require 'sinatra'
 require 'slim'
-# require 'coffee_script'
-require 'rack-flash'
 require 'json'
 require_relative 'lib/input-rymer'
 require_relative 'lib/addition-freq_dict'
 
 configure do
-  enable :logging
-  enable :sessions
-  set :session_secret, 'homofony.secret'
-  use Rack::Flash
-  mime_type :ttf, 'font/ttf'
-  mime_type :otf, 'font/otf'
   set :dict, Addition::FreqDict.new('data/freq-dict.pl.bin')
 end
 
@@ -27,6 +19,7 @@ get '/' do
 end
 
 get '/results.json' do
+  logger.info "Looking for homophones for word \"#{params[:word]}\""
   content_type :json
   homophones(params[:word]).to_json
 end
